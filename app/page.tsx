@@ -6,15 +6,6 @@ import { useEffect, useState } from "react"
 
 export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
   
   const servers = [
     { id: 1, name: "Atentah Studio", icon: "🎨", iconBg: "from-gray-700 to-gray-900", members: "205", online: "20" },
@@ -72,128 +63,87 @@ export default function HomePage() {
     </div>
   )
 
-  const Particle = ({ index, type }) => {
-    const baseX = Math.random() * 100
-    const baseY = Math.random() * 150 + 100 // Começa abaixo da tela
-    const [pos, setPos] = useState({ x: baseX, y: baseY })
-    
-    useEffect(() => {
-      const particleEl = document.getElementById(`particle-${type}-${index}`)
-      if (!particleEl) return
-      
-      const rect = particleEl.getBoundingClientRect()
-      const particleX = rect.left + rect.width / 2
-      const particleY = rect.top + rect.height / 2
-      
-      const distX = mousePos.x - particleX
-      const distY = mousePos.y - particleY
-      const distance = Math.sqrt(distX * distX + distY * distY)
-      
-      if (distance < 120) {
-        const force = (120 - distance) / 120
-        const angle = Math.atan2(distY, distX)
-        const pushX = -Math.cos(angle) * force * 60
-        const pushY = -Math.sin(angle) * force * 60
-        
-        setPos(prev => ({
-          x: Math.max(-10, Math.min(110, prev.x + pushX / 10)),
-          y: Math.max(-10, Math.min(110, prev.y + pushY / 10))
-        }))
-      }
-    }, [mousePos, index, type])
-    
-    const configs = {
-      white: {
-        color: `rgba(255, 255, 255, ${Math.random() * 0.9 + 0.3})`,
-        size: Math.random() * 6 + 2,
-        duration: Math.random() * 10 + 6,
-        delay: Math.random() * 3,
-        blur: Math.random() * 0.5
-      },
-      orb: {
-        color: `rgba(255, 255, 255, ${Math.random() * 0.6 + 0.3})`,
-        size: Math.random() * 25 + 15,
-        duration: Math.random() * 15 + 10,
-        delay: Math.random() * 4,
-        blur: 12
-      },
-      gray: {
-        color: `rgba(200, 200, 200, ${Math.random() * 0.7 + 0.3})`,
-        size: Math.random() * 7 + 3,
-        duration: Math.random() * 14 + 8,
-        delay: Math.random() * 5,
-        blur: Math.random() * 1
-      },
-      gold: {
-        color: `rgba(217, 164, 65, ${Math.random() * 0.5 + 0.3})`,
-        size: Math.random() * 5 + 2,
-        duration: Math.random() * 18 + 10,
-        delay: Math.random() * 6,
-        blur: Math.random() * 1.2
-      }
-    }
-    
-    const config = configs[type]
-    
-    return (
-      <div
-        id={`particle-${type}-${index}`}
-        className="absolute rounded-full will-change-transform transition-all duration-300 ease-out"
-        style={{
-          backgroundColor: config.color,
-          width: `${config.size}px`,
-          height: `${config.size}px`,
-          left: `${pos.x}%`,
-          top: `${pos.y}%`,
-          animation: `float-up-intense ${config.duration}s infinite linear`,
-          animationDelay: `${config.delay}s`,
-          filter: `blur(${config.blur}px)`,
-        }}
-      />
-    )
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white relative overflow-hidden">
-      {/* Partículas SUPER INTENSAS com interação */}
+      {/* Partículas INTENSAS */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Partículas brancas - MUITO MAIS */}
-        {[...Array(150)].map((_, i) => (
-          <Particle key={`white-${i}`} index={i} type="white" />
+        {/* Partículas brancas pequenas - MUITAS */}
+        {[...Array(80)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full will-change-transform"
+            style={{
+              backgroundColor: `rgba(255, 255, 255, ${Math.random() * 0.8 + 0.3})`,
+              width: `${Math.random() * 5 + 2}px`,
+              height: `${Math.random() * 5 + 2}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animation: `float-up ${Math.random() * 12 + 8}s infinite linear`,
+              animationDelay: `${Math.random() * 8}s`,
+              filter: `blur(${Math.random() * 0.5}px)`,
+            }}
+          />
         ))}
         
-        {/* Orbs GRANDES */}
-        {[...Array(35)].map((_, i) => (
-          <Particle key={`orb-${i}`} index={i} type="orb" />
+        {/* Orbs GRANDES e BRILHANTES */}
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={`orb-${i}`}
+            className="absolute rounded-full blur-lg will-change-transform"
+            style={{
+              backgroundColor: `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`,
+              width: `${Math.random() * 20 + 12}px`,
+              height: `${Math.random() * 20 + 12}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animation: `float-diagonal ${Math.random() * 18 + 15}s infinite ease-in-out`,
+              animationDelay: `${Math.random() * 6}s`,
+            }}
+          />
         ))}
 
-        {/* Partículas cinzas */}
-        {[...Array(80)].map((_, i) => (
-          <Particle key={`gray-${i}`} index={i} type="gray" />
+        {/* Partículas cinzas médias */}
+        {[...Array(40)].map((_, i) => (
+          <div
+            key={`gray-${i}`}
+            className="absolute rounded-full will-change-transform"
+            style={{
+              backgroundColor: `rgba(200, 200, 200, ${Math.random() * 0.6 + 0.2})`,
+              width: `${Math.random() * 6 + 2}px`,
+              height: `${Math.random() * 6 + 2}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animation: `float-up ${Math.random() * 16 + 12}s infinite linear`,
+              animationDelay: `${Math.random() * 10}s`,
+              filter: `blur(${Math.random() * 0.8}px)`,
+            }}
+          />
         ))}
         
         {/* Partículas douradas */}
-        {[...Array(30)].map((_, i) => (
-          <Particle key={`gold-${i}`} index={i} type="gold" />
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={`gold-${i}`}
+            className="absolute rounded-full will-change-transform"
+            style={{
+              backgroundColor: `rgba(217, 164, 65, ${Math.random() * 0.4 + 0.2})`,
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animation: `float-diagonal ${Math.random() * 20 + 15}s infinite ease-in-out`,
+              animationDelay: `${Math.random() * 8}s`,
+              filter: `blur(${Math.random() * 1}px)`,
+            }}
+          />
         ))}
       </div>
 
       <style jsx>{`
-        @keyframes float-up-intense {
-          0% { 
-            transform: translateY(100vh) translateX(0); 
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% { 
-            transform: translateY(-120vh) translateX(30px); 
-            opacity: 0;
-          }
+        @keyframes float-up {
+          0% { transform: translateY(0) translateX(0); opacity: 0.3; }
+          50% { opacity: 1; }
+          100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
         }
         
         @keyframes float-diagonal {
