@@ -176,34 +176,34 @@ export default function PlansPage() {
             </p>
           </div>
 
-         {/* Cards de Planos - ANIMADOS */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+          {/* Cards de Planos - ANIMADOS */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-5xl mx-auto mb-12">
             {plans.map((plan, index) => (
               <div
                 key={index}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`relative rounded-2xl p-6 transition-all duration-500 transform ${
+                className={`relative rounded-xl p-4 transition-all duration-500 transform ${
                   plan.highlighted
-                    ? "scale-105 lg:scale-108 z-20"
-                    : hoveredCard === index ? "scale-103" : "scale-100"
+                    ? "scale-102 lg:scale-105 z-20"
+                    : hoveredCard === index ? "scale-102" : "scale-100"
                 } ${
                   plan.highlighted
-                    ? `bg-gradient-to-br ${plan.gradient} border-2 border-purple-400 shadow-2xl`
+                    ? `bg-gradient-to-br ${plan.gradient} border border-purple-400 shadow-xl`
                     : "bg-gray-900/60 backdrop-blur-sm border border-gray-700 hover:border-gray-600"
                 }`}
                 style={{
                   animation: plan.highlighted ? 'glow-pulse 3s infinite' : 'none',
                   boxShadow: hoveredCard === index && !plan.highlighted 
-                    ? '0 15px 40px rgba(59, 130, 246, 0.25)' 
+                    ? '0 10px 30px rgba(59, 130, 246, 0.2)' 
                     : plan.highlighted 
-                    ? '0 20px 50px rgba(168, 85, 247, 0.35)'
+                    ? '0 15px 40px rgba(168, 85, 247, 0.3)'
                     : 'none'
                 }}
               >
                 {/* Ícone Flutuante */}
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                  <div className={`text-5xl bg-gradient-to-br ${plan.gradient} rounded-full p-3 shadow-xl transition-transform duration-300 ${hoveredCard === index ? 'scale-110 rotate-12' : 'scale-100'}`}>
+                <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
+                  <div className={`text-4xl bg-gradient-to-br ${plan.gradient} rounded-full p-2 shadow-lg transition-transform duration-300 ${hoveredCard === index ? 'scale-105 rotate-6' : 'scale-100'}`}>
                     {plan.icon}
                   </div>
                 </div>
