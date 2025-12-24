@@ -2,8 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
-import Link from "next/link"
-
 
 export default function PlansPage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -42,11 +40,11 @@ export default function PlansPage() {
       name: "Pacote Completo",
       badge: "Melhor Custo-Benefício",
       badgeColor: "bg-purple-600",
-      popular: "⭐ Economia de R$ 20",
-      price: "165,00",
-      period: " + R$ 25/mês",
-      originalPrice: "185,00",
-      description: "Todos os 16 adicionais inclusos! Pagamento inicial com desconto.",
+      popular: "⭐ Economia de R$ 10",
+      price: "150,00",
+      period: " - 1ª mensalidade inclusa",
+      originalPrice: "160,00",
+      description: "Todos os 16 adicionais inclusos! Primeira mensalidade já inclusa.",
       icon: "🚀",
       gradient: "from-purple-600 via-purple-700 to-pink-600",
       features: [
@@ -62,13 +60,13 @@ export default function PlansPage() {
       buttonText: "Quero Tudo Agora",
       buttonColor: "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700",
       highlighted: true,
-      savings: "Desconto de R$ 20,00"
+      savings: "Desconto de R$ 10,00"
     },
     {
       name: "Servidor GTA RP",
       badge: "Pagamento Único",
       badgeColor: "bg-gradient-to-r from-orange-500 to-red-600",
-      price: "30,00",
+      price: "50,00",
       period: " única vez",
       description: "Servidor Discord completo configurado para sua facção de GTA RP.",
       icon: "🏙️",
@@ -176,14 +174,14 @@ export default function PlansPage() {
             </p>
           </div>
 
-          {/* Cards de Planos - ANIMADOS */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-5xl mx-auto mb-12">
+          {/* Cards de Planos - ANIMADOS E MENORES */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-6xl mx-auto mb-12">
             {plans.map((plan, index) => (
               <div
                 key={index}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`relative rounded-xl p-4 transition-all duration-500 transform ${
+                className={`relative rounded-xl p-5 transition-all duration-500 transform ${
                   plan.highlighted
                     ? "scale-102 lg:scale-105 z-20"
                     : hoveredCard === index ? "scale-102" : "scale-100"
@@ -202,46 +200,46 @@ export default function PlansPage() {
                 }}
               >
                 {/* Ícone Flutuante */}
-                <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
-                  <div className={`text-4xl bg-gradient-to-br ${plan.gradient} rounded-full p-2 shadow-lg transition-transform duration-300 ${hoveredCard === index ? 'scale-105 rotate-6' : 'scale-100'}`}>
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className={`text-3xl bg-gradient-to-br ${plan.gradient} rounded-full p-2 shadow-lg transition-transform duration-300 ${hoveredCard === index ? 'scale-105 rotate-6' : 'scale-100'}`}>
                     {plan.icon}
                   </div>
                 </div>
 
                 {/* Badge e Popular */}
-                <div className="flex items-center justify-between mb-6 mt-8 flex-wrap gap-2">
-                  <span className={`${plan.badgeColor} text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg`}>
+                <div className="flex items-center justify-between mb-4 mt-6 flex-wrap gap-2">
+                  <span className={`${plan.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg`}>
                     {plan.badge}
                   </span>
                   {plan.popular && (
-                    <span className="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-bounce">
+                    <span className="bg-yellow-500 text-black text-xs font-bold px-2 py-0.5 rounded-full shadow-lg animate-bounce">
                       {plan.popular}
                     </span>
                   )}
                 </div>
 
                 {/* Nome do Plano */}
-                <h3 className="text-3xl font-bold mb-3">{plan.name}</h3>
-                <p className="text-gray-300 text-sm mb-6 min-h-[48px] leading-relaxed">{plan.description}</p>
+                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                <p className="text-gray-300 text-xs mb-4 min-h-[40px] leading-relaxed">{plan.description}</p>
 
                 {/* Preço com animação */}
-                <div className="mb-8 relative">
+                <div className="mb-6 relative">
                   {plan.originalPrice && (
-                    <div className="text-center mb-2">
-                      <span className="text-gray-400 line-through text-lg">De R$ {plan.originalPrice}</span>
+                    <div className="text-center mb-1">
+                      <span className="text-gray-400 line-through text-sm">De R$ {plan.originalPrice}</span>
                     </div>
                   )}
                   <div className="flex items-baseline justify-center flex-wrap gap-1">
                     <span className="text-sm text-gray-400 mr-1">R$</span>
-                    <span className={`text-5xl font-bold transition-all duration-300 ${hoveredCard === index ? 'scale-110' : 'scale-100'}`}>
+                    <span className={`text-4xl font-bold transition-all duration-300 ${hoveredCard === index ? 'scale-110' : 'scale-100'}`}>
                       {plan.price.split(',')[0]}
                     </span>
-                    <span className="text-2xl font-bold">,{plan.price.split(',')[1]}</span>
-                    <span className="text-gray-400 ml-1 text-base">{plan.period}</span>
+                    <span className="text-xl font-bold">,{plan.price.split(',')[1]}</span>
+                    <span className="text-gray-400 ml-1 text-sm">{plan.period}</span>
                   </div>
                   {plan.savings && (
-                    <div className="mt-3 text-center">
-                      <span className="bg-green-500/20 text-green-400 text-xs font-semibold px-3 py-1 rounded-full border border-green-500/50">
+                    <div className="mt-2 text-center">
+                      <span className="bg-green-500/20 text-green-400 text-xs font-semibold px-2 py-0.5 rounded-full border border-green-500/50">
                         💰 {plan.savings}
                       </span>
                     </div>
@@ -249,29 +247,29 @@ export default function PlansPage() {
                 </div>
 
                 {/* Features com ícones animados */}
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-2 mb-6">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start group">
-                      <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${plan.gradient} flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 transition-transform duration-300 ${hoveredCard === index ? 'scale-110' : 'scale-100'}`}>
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <div className={`w-4 h-4 rounded-full bg-gradient-to-br ${plan.gradient} flex items-center justify-center mr-2 mt-0.5 flex-shrink-0 transition-transform duration-300 ${hoveredCard === index ? 'scale-110' : 'scale-100'}`}>
+                        <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       </div>
-                      <span className="text-gray-300 text-sm group-hover:text-white transition-colors">{feature}</span>
+                      <span className="text-gray-300 text-xs group-hover:text-white transition-colors">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Nota adicional */}
                 {plan.note && (
-                  <div className="mb-4 p-3 bg-black/30 rounded-lg border border-orange-500/30">
+                  <div className="mb-3 p-2 bg-black/30 rounded-lg border border-orange-500/30">
                     <p className="text-xs text-orange-300 text-center">💬 {plan.note}</p>
                   </div>
                 )}
 
                 {/* Botão com animação */}
                 <Button
-                  className={`w-full ${plan.buttonColor} text-white py-6 rounded-xl font-bold text-lg transition-all duration-300 transform shadow-2xl ${
+                  className={`w-full ${plan.buttonColor} text-white py-4 rounded-xl font-bold text-base transition-all duration-300 transform shadow-2xl ${
                     hoveredCard === index ? 'scale-105 shadow-3xl' : 'scale-100'
                   }`}
                 >
@@ -318,13 +316,13 @@ export default function PlansPage() {
                   <div className="text-3xl mb-2">🚀</div>
                   <div className="font-bold text-lg mb-2">Pacote Completo</div>
                   <div className="text-sm text-gray-400">Todas as funcionalidades com desconto</div>
-                  <div className="mt-3 text-purple-400 font-bold">R$ 165 + R$ 25/mês</div>
+                  <div className="mt-3 text-purple-400 font-bold">R$ 150 (1ª inclusa)</div>
                 </div>
                 <div>
                   <div className="text-3xl mb-2">🏙️</div>
                   <div className="font-bold text-lg mb-2">Servidor GTA RP</div>
                   <div className="text-sm text-gray-400">Servidor pronto para sua facção</div>
-                  <div className="mt-3 text-orange-400 font-bold">R$ 30 único</div>
+                  <div className="mt-3 text-orange-400 font-bold">R$ 50 único</div>
                 </div>
               </div>
             </div>
