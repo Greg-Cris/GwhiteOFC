@@ -176,17 +176,17 @@ export default function PlansPage() {
             </p>
           </div>
 
-          {/* Cards de Planos - ANIMADOS */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
+         {/* Cards de Planos - ANIMADOS */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
             {plans.map((plan, index) => (
               <div
                 key={index}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`relative rounded-3xl p-8 transition-all duration-500 transform ${
+                className={`relative rounded-2xl p-6 transition-all duration-500 transform ${
                   plan.highlighted
-                    ? "scale-105 lg:scale-110 z-20"
-                    : hoveredCard === index ? "scale-105" : "scale-100"
+                    ? "scale-105 lg:scale-108 z-20"
+                    : hoveredCard === index ? "scale-103" : "scale-100"
                 } ${
                   plan.highlighted
                     ? `bg-gradient-to-br ${plan.gradient} border-2 border-purple-400 shadow-2xl`
@@ -195,15 +195,15 @@ export default function PlansPage() {
                 style={{
                   animation: plan.highlighted ? 'glow-pulse 3s infinite' : 'none',
                   boxShadow: hoveredCard === index && !plan.highlighted 
-                    ? '0 20px 60px rgba(59, 130, 246, 0.3)' 
+                    ? '0 15px 40px rgba(59, 130, 246, 0.25)' 
                     : plan.highlighted 
-                    ? '0 25px 70px rgba(168, 85, 247, 0.4)'
+                    ? '0 20px 50px rgba(168, 85, 247, 0.35)'
                     : 'none'
                 }}
               >
                 {/* Ícone Flutuante */}
-                <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-                  <div className={`text-6xl bg-gradient-to-br ${plan.gradient} rounded-full p-4 shadow-2xl transition-transform duration-300 ${hoveredCard === index ? 'scale-125 rotate-12' : 'scale-100'}`}>
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                  <div className={`text-5xl bg-gradient-to-br ${plan.gradient} rounded-full p-3 shadow-xl transition-transform duration-300 ${hoveredCard === index ? 'scale-110 rotate-12' : 'scale-100'}`}>
                     {plan.icon}
                   </div>
                 </div>
