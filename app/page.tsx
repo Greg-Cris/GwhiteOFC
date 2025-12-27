@@ -74,9 +74,62 @@ export default function HomePage() {
     );
   };
 
+  // Gerar partículas uma vez
+  const whiteParticles = [...Array(80)].map((_, i) => ({
+    opacity: Math.random() * 0.8 + 0.3,
+    size: Math.random() * 5 + 2,
+    topPos: Math.random() * 100,
+    leftPos: Math.random() * 100,
+    duration: Math.random() * 12 + 8,
+    delay: Math.random() * 8,
+    blur: Math.random() * 0.5,
+  }));
+
+  const orbs = [...Array(20)].map((_, i) => ({
+    opacity: Math.random() * 0.5 + 0.2,
+    size: Math.random() * 20 + 12,
+    topPos: Math.random() * 100,
+    leftPos: Math.random() * 100,
+    duration: Math.random() * 18 + 15,
+    delay: Math.random() * 6,
+  }));
+
+  const grayParticles = [...Array(40)].map((_, i) => ({
+    opacity: Math.random() * 0.6 + 0.2,
+    size: Math.random() * 6 + 2,
+    topPos: Math.random() * 100,
+    leftPos: Math.random() * 100,
+    duration: Math.random() * 16 + 12,
+    delay: Math.random() * 10,
+    blur: Math.random() * 0.8,
+  }));
+
+  const goldParticles = [...Array(15)].map((_, i) => ({
+    opacity: Math.random() * 0.4 + 0.2,
+    size: Math.random() * 4 + 2,
+    topPos: Math.random() * 100,
+    leftPos: Math.random() * 100,
+    duration: Math.random() * 20 + 15,
+    delay: Math.random() * 8,
+    blur: Math.random() * 1,
+  }));
+
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white relative overflow-hidden">
       <style dangerouslySetInnerHTML={{__html: `
+        @keyframes float-up {
+          0% { transform: translateY(0) translateX(0); opacity: 0.3; }
+          50% { opacity: 1; }
+          100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+        }
+        
+        @keyframes float-diagonal {
+          0%, 100% { transform: translate(0, 0); opacity: 0.5; }
+          25% { transform: translate(30px, -30px); opacity: 0.8; }
+          50% { transform: translate(60px, 0); opacity: 0.6; }
+          75% { transform: translate(30px, 30px); opacity: 0.7; }
+        }
+        
         @keyframes natural-blink {
           0%, 85% { opacity: 1; }
           90%, 95% { opacity: 0.3; }
@@ -99,10 +152,89 @@ export default function HomePage() {
         .carousel-track { animation: scroll 20s linear infinite; display: flex; }
       `}} />
 
+      {/* Partículas INTENSAS */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Partículas brancas pequenas */}
+        {whiteParticles.map((particle, i) => (
+          <div
+            key={`white-${i}`}
+            className="absolute rounded-full will-change-transform"
+            style={{
+              backgroundColor: `rgba(255, 255, 255, ${particle.opacity})`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              top: `${particle.topPos}%`,
+              left: `${particle.leftPos}%`,
+              animation: `float-up ${particle.duration}s infinite linear`,
+              animationDelay: `${particle.delay}s`,
+              filter: `blur(${particle.blur}px)`,
+            }}
+          />
+        ))}
+        
+        {/* Orbs GRANDES e BRILHANTES */}
+        {orbs.map((orb, i) => (
+          <div
+            key={`orb-${i}`}
+            className="absolute rounded-full blur-lg will-change-transform"
+            style={{
+              backgroundColor: `rgba(255, 255, 255, ${orb.opacity})`,
+              width: `${orb.size}px`,
+              height: `${orb.size}px`,
+              top: `${orb.topPos}%`,
+              left: `${orb.leftPos}%`,
+              animation: `float-diagonal ${orb.duration}s infinite ease-in-out`,
+              animationDelay: `${orb.delay}s`,
+            }}
+          />
+        ))}
+
+        {/* Partículas cinzas médias */}
+        {grayParticles.map((particle, i) => (
+          <div
+            key={`gray-${i}`}
+            className="absolute rounded-full will-change-transform"
+            style={{
+              backgroundColor: `rgba(200, 200, 200, ${particle.opacity})`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              top: `${particle.topPos}%`,
+              left: `${particle.leftPos}%`,
+              animation: `float-up ${particle.duration}s infinite linear`,
+              animationDelay: `${particle.delay}s`,
+              filter: `blur(${particle.blur}px)`,
+            }}
+          />
+        ))}
+        
+        {/* Partículas douradas */}
+        {goldParticles.map((particle, i) => (
+          <div
+            key={`gold-${i}`}
+            className="absolute rounded-full will-change-transform"
+            style={{
+              backgroundColor: `rgba(217, 164, 65, ${particle.opacity})`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              top: `${particle.topPos}%`,
+              left: `${particle.leftPos}%`,
+              animation: `float-diagonal ${particle.duration}s infinite ease-in-out`,
+              animationDelay: `${particle.delay}s`,
+              filter: `blur(${particle.blur}px)`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Overlay de gradiente sutil */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 pointer-events-none" />
+
       {/* Header */}
       <header className={`fixed top-0 left-0 right-0 flex items-center justify-between px-6 py-3 lg:px-12 z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.8)]" : "bg-transparent"}`}>
         <Link href="/" className="flex items-center">
-          <img src="/gwhite-logo.png" alt="G-White Apps" className="h-16 w-auto" />
+          <div className="h-16 w-16 bg-gradient-to-br from-amber-600 to-amber-800 rounded-lg flex items-center justify-center text-2xl font-bold">
+            GW
+          </div>
         </Link>
         <nav className="hidden md:flex items-center space-x-2">
           <Link href="/" className="text-white bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
@@ -111,11 +243,11 @@ export default function HomePage() {
           <Link href="/planos" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
             Planos
           </Link>
-          <Link href="/adicionais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
-            Adicionais
-          </Link>
           <Link href="/tutoriais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
             Tutoriais
+          </Link>
+          <Link href="#" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
+            Discord
           </Link>
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-all duration-200 ml-4 shadow-lg font-semibold">
             Entrar
