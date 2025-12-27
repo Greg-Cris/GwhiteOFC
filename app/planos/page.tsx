@@ -1,7 +1,9 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+
 
 export default function PlansPage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -92,13 +94,146 @@ export default function PlansPage() {
   ]
 
   return (
-    <div className="min-h-screen relative">
-      <style dangerouslySetInnerHTML={{__html: `
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white relative overflow-hidden">
+      {/* Partículas INTENSAS - Igual à página inicial */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Partículas brancas pequenas */}
+        {[...Array(120)].map((_, i) => {
+          const opacity = Math.random() * 0.8 + 0.3;
+          const size = Math.random() * 5 + 2;
+          const topPos = Math.random() * 100;
+          const leftPos = Math.random() * 100;
+          const duration = Math.random() * 12 + 8;
+          const delay = Math.random() * 8;
+          const blur = Math.random() * 0.5;
+          
+          return (
+            <div
+              key={`white-${i}`}
+              className="absolute rounded-full will-change-transform"
+              style={{
+                backgroundColor: `rgba(255, 255, 255, ${opacity})`,
+                width: `${size}px`,
+                height: `${size}px`,
+                top: `${topPos}%`,
+                left: `${leftPos}%`,
+                animation: `float-up ${duration}s infinite linear`,
+                animationDelay: `${delay}s`,
+                filter: `blur(${blur}px)`,
+              }}
+            />
+          );
+        })}
+        
+        {/* Orbs GRANDES e BRILHANTES */}
+        {[...Array(30)].map((_, i) => {
+          const opacity = Math.random() * 0.5 + 0.2;
+          const size = Math.random() * 20 + 12;
+          const topPos = Math.random() * 100;
+          const leftPos = Math.random() * 100;
+          const duration = Math.random() * 18 + 15;
+          const delay = Math.random() * 6;
+          
+          return (
+            <div
+              key={`orb-${i}`}
+              className="absolute rounded-full blur-lg will-change-transform"
+              style={{
+                backgroundColor: `rgba(255, 255, 255, ${opacity})`,
+                width: `${size}px`,
+                height: `${size}px`,
+                top: `${topPos}%`,
+                left: `${leftPos}%`,
+                animation: `float-diagonal ${duration}s infinite ease-in-out`,
+                animationDelay: `${delay}s`,
+              }}
+            />
+          );
+        })}
+
+        {/* Partículas cinzas médias */}
+        {[...Array(60)].map((_, i) => {
+          const opacity = Math.random() * 0.6 + 0.2;
+          const size = Math.random() * 6 + 2;
+          const topPos = Math.random() * 100;
+          const leftPos = Math.random() * 100;
+          const duration = Math.random() * 16 + 12;
+          const delay = Math.random() * 10;
+          const blur = Math.random() * 0.8;
+          
+          return (
+            <div
+              key={`gray-${i}`}
+              className="absolute rounded-full will-change-transform"
+              style={{
+                backgroundColor: `rgba(200, 200, 200, ${opacity})`,
+                width: `${size}px`,
+                height: `${size}px`,
+                top: `${topPos}%`,
+                left: `${leftPos}%`,
+                animation: `float-up ${duration}s infinite linear`,
+                animationDelay: `${delay}s`,
+                filter: `blur(${blur}px)`,
+              }}
+            />
+          );
+        })}
+        
+        {/* Partículas douradas */}
+        {[...Array(25)].map((_, i) => {
+          const opacity = Math.random() * 0.4 + 0.2;
+          const size = Math.random() * 4 + 2;
+          const topPos = Math.random() * 100;
+          const leftPos = Math.random() * 100;
+          const duration = Math.random() * 20 + 15;
+          const delay = Math.random() * 8;
+          const blur = Math.random() * 1;
+          
+          return (
+            <div
+              key={`gold-${i}`}
+              className="absolute rounded-full will-change-transform"
+              style={{
+                backgroundColor: `rgba(217, 164, 65, ${opacity})`,
+                width: `${size}px`,
+                height: `${size}px`,
+                top: `${topPos}%`,
+                left: `${leftPos}%`,
+                animation: `float-diagonal ${duration}s infinite ease-in-out`,
+                animationDelay: `${delay}s`,
+                filter: `blur(${blur}px)`,
+              }}
+            />
+          );
+        })}
+      </div>
+      
+      {/* Overlay de gradiente sutil */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 pointer-events-none" />
+
+      {/* Efeitos de luz de fundo */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gray-300/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+
+      <style jsx>{`
+        @keyframes float-up {
+          0% { transform: translateY(0) translateX(0); opacity: 0.3; }
+          50% { opacity: 1; }
+          100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+        }
+        
+        @keyframes float-diagonal {
+          0%, 100% { transform: translate(0, 0); opacity: 0.5; }
+          25% { transform: translate(30px, -30px); opacity: 0.8; }
+          50% { transform: translate(60px, 0); opacity: 0.6; }
+          75% { transform: translate(30px, 30px); opacity: 0.7; }
+        }
+        
         @keyframes glow-pulse {
           0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
           50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.6), 0 0 60px rgba(168, 85, 247, 0.4); }
         }
-      `}} />
+      `}</style>
 
       {/* Header FIXO */}
       <header className={`fixed top-0 left-0 right-0 flex items-center justify-between px-6 py-3 lg:px-12 z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.8)]" : "bg-transparent"}`}>
@@ -112,15 +247,18 @@ export default function PlansPage() {
           <Link href="/planos" className="text-white bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
             Planos
           </Link>
-          <Link href="/adicionais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
-            Adicionais
-          </Link>
           <Link href="/tutoriais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
             Tutoriais
           </Link>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-all duration-200 ml-4 shadow-lg font-semibold">
+          <Link href="/adicionais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
+            Adicionais
+          </Link>
+          <Link href="#" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
+            Discord
+          </Link>
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-all duration-200 ml-4 shadow-lg font-semibold">
             Entrar
-          </button>
+          </Button>
         </nav>
       </header>
 
@@ -141,7 +279,7 @@ export default function PlansPage() {
             </p>
           </div>
 
-          {/* Cards de Planos */}
+          {/* Cards de Planos - ANIMADOS E MENORES */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-5xl mx-auto mb-12">
             {plans.map((plan, index) => (
               <div
@@ -235,7 +373,7 @@ export default function PlansPage() {
                 )}
 
                 {/* Botão com animação */}
-                <button
+                <Button
                   className={`w-full ${plan.buttonColor} text-white py-4 rounded-xl font-bold text-base transition-all duration-300 transform shadow-2xl ${
                     hoveredCard === index ? 'scale-105 shadow-3xl' : 'scale-100'
                   }`}
@@ -244,7 +382,7 @@ export default function PlansPage() {
                   <span className={`ml-2 inline-block transition-transform duration-300 ${hoveredCard === index ? 'translate-x-2' : 'translate-x-0'}`}>
                     →
                   </span>
-                </button>
+                </Button>
               </div>
             ))}
           </div>
@@ -261,9 +399,9 @@ export default function PlansPage() {
                 <span className="text-sm text-gray-400">Sistema de tickets, metas, antiflood, rank, blacklist e muito mais.</span>
               </p>
               <Link href="/adicionais">
-                <button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-6 rounded-xl font-bold text-lg shadow-2xl transform hover:scale-105 transition-all duration-300">
+                <Button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-6 rounded-xl font-bold text-lg shadow-2xl transform hover:scale-105 transition-all duration-300">
                   Ver Todas as Funcionalidades →
-                </button>
+                </Button>
               </Link>
             </div>
           </div>
