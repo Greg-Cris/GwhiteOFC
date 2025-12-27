@@ -74,10 +74,10 @@ export default function HomePage() {
     );
   };
 
-  // Gerar partículas uma vez
-  const whiteParticles = [...Array(80)].map((_, i) => ({
-    opacity: Math.random() * 0.8 + 0.3,
-    size: Math.random() * 5 + 2,
+  // Gerar partículas uma vez (REDUZIDO)
+  const whiteParticles = [...Array(30)].map((_, i) => ({
+    opacity: Math.random() * 0.6 + 0.2,
+    size: Math.random() * 4 + 2,
     topPos: Math.random() * 100,
     leftPos: Math.random() * 100,
     duration: Math.random() * 12 + 8,
@@ -85,18 +85,18 @@ export default function HomePage() {
     blur: Math.random() * 0.5,
   }));
 
-  const orbs = [...Array(20)].map((_, i) => ({
-    opacity: Math.random() * 0.5 + 0.2,
-    size: Math.random() * 20 + 12,
+  const orbs = [...Array(8)].map((_, i) => ({
+    opacity: Math.random() * 0.3 + 0.15,
+    size: Math.random() * 16 + 10,
     topPos: Math.random() * 100,
     leftPos: Math.random() * 100,
     duration: Math.random() * 18 + 15,
     delay: Math.random() * 6,
   }));
 
-  const grayParticles = [...Array(40)].map((_, i) => ({
-    opacity: Math.random() * 0.6 + 0.2,
-    size: Math.random() * 6 + 2,
+  const grayParticles = [...Array(20)].map((_, i) => ({
+    opacity: Math.random() * 0.4 + 0.15,
+    size: Math.random() * 5 + 2,
     topPos: Math.random() * 100,
     leftPos: Math.random() * 100,
     duration: Math.random() * 16 + 12,
@@ -104,8 +104,8 @@ export default function HomePage() {
     blur: Math.random() * 0.8,
   }));
 
-  const goldParticles = [...Array(15)].map((_, i) => ({
-    opacity: Math.random() * 0.4 + 0.2,
+  const goldParticles = [...Array(8)].map((_, i) => ({
+    opacity: Math.random() * 0.3 + 0.15,
     size: Math.random() * 4 + 2,
     topPos: Math.random() * 100,
     leftPos: Math.random() * 100,
@@ -152,7 +152,7 @@ export default function HomePage() {
         .carousel-track { animation: scroll 20s linear infinite; display: flex; }
       `}} />
 
-      {/* Partículas INTENSAS */}
+      {/* Partículas REDUZIDAS */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Partículas brancas pequenas */}
         {whiteParticles.map((particle, i) => (
@@ -265,7 +265,12 @@ export default function HomePage() {
                   👑
                 </span>
               </div>
-              <span className="text-white font-bold tracking-wide">G-White Apps</span>
+              <span className="text-[#8B6914] font-extrabold tracking-tight" style={{ textShadow: "0 0 30px rgba(139, 105, 20, 0.5), 0 0 60px rgba(139, 105, 20, 0.3)" }}>
+                NeverMiss
+              </span>{" "}
+              <span className="text-[#CD853F] font-extrabold tracking-tight" style={{ textShadow: "0 0 30px rgba(205, 133, 63, 0.5), 0 0 60px rgba(205, 133, 63, 0.3)" }}>
+                Apps
+              </span>
             </div>
           </h1>
           <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-gray-300">
