@@ -94,12 +94,12 @@ export default function PlansPage() {
 
   return (
     <div className="min-h-screen relative">
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes glow-pulse {
           0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
           50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.6), 0 0 60px rgba(168, 85, 247, 0.4); }
         }
-      `}</style>
+      `}} />
 
       {/* Header FIXO */}
       <header className={`fixed top-0 left-0 right-0 flex items-center justify-between px-6 py-3 lg:px-12 z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.8)]" : "bg-transparent"}`}>
@@ -113,15 +113,15 @@ export default function PlansPage() {
           <Link href="/planos" className="text-white bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
             Planos
           </Link>
-          <Link href="/tutoriais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
-            Tutoriais
-          </Link>
           <Link href="/adicionais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
             Adicionais
           </Link>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-all duration-200 ml-4 shadow-lg font-semibold">
+          <Link href="/tutoriais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
+            Tutoriais
+          </Link>
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-all duration-200 ml-4 shadow-lg font-semibold">
             Entrar
-          </Button>
+          </button>
         </nav>
       </header>
 
@@ -236,7 +236,7 @@ export default function PlansPage() {
                 )}
 
                 {/* Botão com animação */}
-                <Button
+                <button
                   className={`w-full ${plan.buttonColor} text-white py-4 rounded-xl font-bold text-base transition-all duration-300 transform shadow-2xl ${
                     hoveredCard === index ? 'scale-105 shadow-3xl' : 'scale-100'
                   }`}
@@ -245,7 +245,7 @@ export default function PlansPage() {
                   <span className={`ml-2 inline-block transition-transform duration-300 ${hoveredCard === index ? 'translate-x-2' : 'translate-x-0'}`}>
                     →
                   </span>
-                </Button>
+                </button>
               </div>
             ))}
           </div>
@@ -262,9 +262,9 @@ export default function PlansPage() {
                 <span className="text-sm text-gray-400">Sistema de tickets, metas, antiflood, rank, blacklist e muito mais.</span>
               </p>
               <Link href="/adicionais">
-                <Button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-6 rounded-xl font-bold text-lg shadow-2xl transform hover:scale-105 transition-all duration-300">
+                <button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-6 rounded-xl font-bold text-lg shadow-2xl transform hover:scale-105 transition-all duration-300">
                   Ver Todas as Funcionalidades →
-                </Button>
+                </button>
               </Link>
             </div>
           </div>
