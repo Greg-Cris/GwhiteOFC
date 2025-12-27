@@ -102,9 +102,7 @@ export default function HomePage() {
       {/* Header */}
       <header className={`fixed top-0 left-0 right-0 flex items-center justify-between px-6 py-3 lg:px-12 z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.8)]" : "bg-transparent"}`}>
         <Link href="/" className="flex items-center">
-          <div className="h-16 w-16 bg-gradient-to-br from-amber-600 to-amber-800 rounded-lg flex items-center justify-center text-2xl font-bold">
-            GW
-          </div>
+          <img src="/gwhite-logo.png" alt="G-White Apps" className="h-16 w-auto" />
         </Link>
         <nav className="hidden md:flex items-center space-x-2">
           <Link href="/" className="text-white bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
@@ -113,7 +111,7 @@ export default function HomePage() {
           <Link href="/planos" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
             Planos
           </Link>
-          <Link href="#" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
+          <Link href="/adicionais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
             Adicionais
           </Link>
           <Link href="/tutoriais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
