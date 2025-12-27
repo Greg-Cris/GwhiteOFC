@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function TutorialsPage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -234,7 +235,7 @@ export default function TutorialsPage() {
 
       <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 pointer-events-none" />
 
-      {/* Header FIXO */}
+      {/* Header FIXO - IGUAL AO DE PLANOS */}
       <header className={`fixed top-0 left-0 right-0 flex items-center justify-between px-6 py-3 lg:px-12 z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.8)]" : "bg-transparent"}`}>
         <Link href="/" className="flex items-center">
           <img src="/gwhite-logo.png" alt="G-White Apps" className="h-16 w-auto" />
@@ -246,15 +247,18 @@ export default function TutorialsPage() {
           <Link href="/planos" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
             Planos
           </Link>
-          <Link href="/adicionais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
-            Adicionais
-          </Link>
           <Link href="/tutoriais" className="text-white bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
             Tutoriais
           </Link>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-all duration-200 ml-4 shadow-lg font-semibold">
+          <Link href="/adicionais" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
+            Adicionais
+          </Link>
+          <Link href="#" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg">
+            Discord
+          </Link>
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-all duration-200 ml-4 shadow-lg font-semibold">
             Entrar
-          </button>
+          </Button>
         </nav>
       </header>
 
@@ -353,13 +357,13 @@ export default function TutorialsPage() {
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
             Não encontrou o que procurava? Nossa equipe de suporte está sempre pronta para ajudar você a configurar seu bot perfeitamente.
           </p>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-xl font-semibold shadow-xl transform hover:scale-105 transition-all duration-200">
+          <Button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-xl font-semibold shadow-xl transform hover:scale-105 transition-all duration-200">
             Falar com Suporte
-          </button>
+          </Button>
         </div>
       </main>
 
-      {/* Footer FIXO */}
+      {/* Footer FIXO - IGUAL AO DE PLANOS */}
       <footer className="flex flex-col sm:flex-row items-center justify-between px-6 py-6 lg:px-12 border-t border-gray-800 relative z-10 bg-black/90 backdrop-blur-md gap-4">
         <div className="flex items-center space-x-6">
           <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2">
