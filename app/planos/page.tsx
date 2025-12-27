@@ -95,42 +95,138 @@ export default function PlansPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white relative overflow-hidden">
-      {/* Partículas de fundo animadas - AUMENTADAS */}
+      {/* Partículas INTENSAS - Igual à página inicial */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(200)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full will-change-transform"
-            style={{
-              backgroundColor: `rgba(${Math.random() > 0.5 ? '168, 85, 247' : '59, 130, 246'}, ${Math.random() * 0.4 + 0.1})`,
-              width: `${Math.random() * 6 + 2}px`,
-              height: `${Math.random() * 6 + 2}px`,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animation: `float-particle ${Math.random() * 20 + 15}s infinite linear`,
-              animationDelay: `${Math.random() * 10}s`,
-              filter: 'blur(1px)',
-            }}
-          />
-        ))}
+        {/* Partículas brancas pequenas */}
+        {[...Array(120)].map((_, i) => {
+          const opacity = Math.random() * 0.8 + 0.3;
+          const size = Math.random() * 5 + 2;
+          const topPos = Math.random() * 100;
+          const leftPos = Math.random() * 100;
+          const duration = Math.random() * 12 + 8;
+          const delay = Math.random() * 8;
+          const blur = Math.random() * 0.5;
+          
+          return (
+            <div
+              key={`white-${i}`}
+              className="absolute rounded-full will-change-transform"
+              style={{
+                backgroundColor: `rgba(255, 255, 255, ${opacity})`,
+                width: `${size}px`,
+                height: `${size}px`,
+                top: `${topPos}%`,
+                left: `${leftPos}%`,
+                animation: `float-up ${duration}s infinite linear`,
+                animationDelay: `${delay}s`,
+                filter: `blur(${blur}px)`,
+              }}
+            />
+          );
+        })}
+        
+        {/* Orbs GRANDES e BRILHANTES */}
+        {[...Array(30)].map((_, i) => {
+          const opacity = Math.random() * 0.5 + 0.2;
+          const size = Math.random() * 20 + 12;
+          const topPos = Math.random() * 100;
+          const leftPos = Math.random() * 100;
+          const duration = Math.random() * 18 + 15;
+          const delay = Math.random() * 6;
+          
+          return (
+            <div
+              key={`orb-${i}`}
+              className="absolute rounded-full blur-lg will-change-transform"
+              style={{
+                backgroundColor: `rgba(255, 255, 255, ${opacity})`,
+                width: `${size}px`,
+                height: `${size}px`,
+                top: `${topPos}%`,
+                left: `${leftPos}%`,
+                animation: `float-diagonal ${duration}s infinite ease-in-out`,
+                animationDelay: `${delay}s`,
+              }}
+            />
+          );
+        })}
+
+        {/* Partículas cinzas médias */}
+        {[...Array(60)].map((_, i) => {
+          const opacity = Math.random() * 0.6 + 0.2;
+          const size = Math.random() * 6 + 2;
+          const topPos = Math.random() * 100;
+          const leftPos = Math.random() * 100;
+          const duration = Math.random() * 16 + 12;
+          const delay = Math.random() * 10;
+          const blur = Math.random() * 0.8;
+          
+          return (
+            <div
+              key={`gray-${i}`}
+              className="absolute rounded-full will-change-transform"
+              style={{
+                backgroundColor: `rgba(200, 200, 200, ${opacity})`,
+                width: `${size}px`,
+                height: `${size}px`,
+                top: `${topPos}%`,
+                left: `${leftPos}%`,
+                animation: `float-up ${duration}s infinite linear`,
+                animationDelay: `${delay}s`,
+                filter: `blur(${blur}px)`,
+              }}
+            />
+          );
+        })}
+        
+        {/* Partículas douradas */}
+        {[...Array(25)].map((_, i) => {
+          const opacity = Math.random() * 0.4 + 0.2;
+          const size = Math.random() * 4 + 2;
+          const topPos = Math.random() * 100;
+          const leftPos = Math.random() * 100;
+          const duration = Math.random() * 20 + 15;
+          const delay = Math.random() * 8;
+          const blur = Math.random() * 1;
+          
+          return (
+            <div
+              key={`gold-${i}`}
+              className="absolute rounded-full will-change-transform"
+              style={{
+                backgroundColor: `rgba(217, 164, 65, ${opacity})`,
+                width: `${size}px`,
+                height: `${size}px`,
+                top: `${topPos}%`,
+                left: `${leftPos}%`,
+                animation: `float-diagonal ${duration}s infinite ease-in-out`,
+                animationDelay: `${delay}s`,
+                filter: `blur(${blur}px)`,
+              }}
+            />
+          );
+        })}
       </div>
+      
+      {/* Overlay de gradiente sutil */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 pointer-events-none" />
 
       {/* Efeitos de luz de fundo */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gray-300/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
 
       <style jsx>{`
-        @keyframes float-particle {
-          0% { 
-            transform: translateY(0) translateX(0) rotate(0deg); 
-            opacity: 0;
-          }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { 
-            transform: translateY(-120vh) translateX(${Math.random() > 0.5 ? '' : '-'}${Math.random() * 100 + 50}px) rotate(360deg); 
-            opacity: 0;
-          }
+        @keyframes float-up {
+          0% { transform: translateY(0) translateX(0); opacity: 0.3; }
+          50% { opacity: 1; }
+          100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+        }
+        
+        @keyframes float-diagonal {
+          0%, 100% { transform: translate(0, 0); opacity: 0.5; }
+          25% { transform: translate(30px, -30px); opacity: 0.8; }
+          50% { transform: translate(60px, 0); opacity: 0.6; }
+          75% { transform: translate(30px, 30px); opacity: 0.7; }
         }
         
         @keyframes glow-pulse {
