@@ -1,27 +1,22 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import { Analytics } from "@vercel/analytics/next"
-import { Suspense } from "react"
-import "./globals.css"
+import ParticlesBackground from './components/ParticlesBackground'
+import './globals.css'
 
-export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+export const metadata = {
+  title: 'G-White Apps',
+  description: 'Seu futuro Bot está aqui',
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} bg-black`}>
-        <Suspense fallback={null}>{children}</Suspense>
-        <Analytics />
+    <html lang="pt-BR">
+      <body className="bg-gradient-to-br from-black via-gray-950 to-black text-white">
+        {/* Partículas Globais - Persistem entre páginas */}
+        <ParticlesBackground />
+        
+        {/* Conteúdo das páginas */}
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   )
